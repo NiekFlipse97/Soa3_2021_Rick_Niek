@@ -389,7 +389,6 @@ public class OrderTest {
     }
 
     /**
-     * asdfasdf
      * Test id NSW3
      */
     @Test

@@ -16,6 +16,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
       - name: Sonarcube
-        run: mvn sonar:sonar
+        run: mvn sonar:sonar -X
           -Dsonar.host.url=${{ secrets.URL }}
           -Dsonar.login=${{ secrets.SONAR_LOGIN }}

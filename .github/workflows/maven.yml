@@ -1,6 +1,9 @@
 name: Java CI SOA3 Rick & Niek
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:

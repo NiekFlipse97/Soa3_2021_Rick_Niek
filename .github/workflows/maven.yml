@@ -20,5 +20,5 @@ jobs:
         run: mvn -B package --file pom.xml
       - name: Sonarcube
         run: mvn -X sonar:sonar
-          -Dsonar.host.url="https://sonarqube.avans-informatica-breda.nl"
+          -Dsonar.host.url=https://sonarqube.avans-informatica-breda.nl
           -Dsonar.login=5e5e42932816cc502ad84f00d682bdba48afa9a1

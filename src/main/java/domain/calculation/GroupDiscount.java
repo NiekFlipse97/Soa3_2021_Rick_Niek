@@ -22,7 +22,7 @@ public class GroupDiscount implements IDiscount {
     }
 
     @Override
-    public double weekendTicketDiscount(MovieTicket ticket, double totalPrice, int i) {
+    public double weekendTicketDiscount(List<MovieTicket> tickets) {
         return 0;
     }
 

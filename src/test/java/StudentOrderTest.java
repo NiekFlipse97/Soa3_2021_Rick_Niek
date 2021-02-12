@@ -13,48 +13,6 @@ import static org.junit.Assert.assertEquals;
 
 public class StudentOrderTest {
 
-    @Test
-    public void studentTicketPriceForFourSeats() {
-        // Arrange
-        Movie hangover = new Movie("The Hangover");
-        MovieScreening movieScreening = new MovieScreening(hangover, LocalDateTime.of(LocalDate.of(2020, 2,9), LocalTime.now()), 12.0);
-        MovieTicket ticket0 = new MovieTicket(movieScreening, false, 3, 6);
-        MovieTicket ticket1 = new MovieTicket(movieScreening, true, 3, 7);
-        MovieTicket ticket2 = new MovieTicket(movieScreening, false, 3, 8);
-        MovieTicket ticket3 = new MovieTicket(movieScreening, true, 3, 9);
-        Order order = new Order(1, new Student());
-
-        // Act
-        order.addSeatReservation(ticket0);
-        order.addSeatReservation(ticket1);
-        order.addSeatReservation(ticket2);
-        order.addSeatReservation(ticket3);
-        double calculatedPrice = order.calculatePrice();
-
-        // Assert
-        assertEquals(24, calculatedPrice, 2);
-    }
-
-    @Test
-    public void studentTicketPremiumPriceForThreeSeats() {
-        // Arrange
-        Movie hangover = new Movie("The Hangover");
-        MovieScreening movieScreening = new MovieScreening(hangover, LocalDateTime.of(LocalDate.of(2020, 2,9), LocalTime.now()), 12.0);
-        MovieTicket ticket0 = new MovieTicket(movieScreening, true, 3, 6);
-        MovieTicket ticket1 = new MovieTicket(movieScreening, true, 3, 7);
-        MovieTicket ticket2 = new MovieTicket(movieScreening, true, 3, 8);
-        Order order = new Order(1, new Student());
-
-        // Act
-        order.addSeatReservation(ticket0);
-        order.addSeatReservation(ticket1);
-        order.addSeatReservation(ticket2);
-        double calculatedPrice = order.calculatePrice();
-
-        // Assert
-        assertEquals(28, calculatedPrice, 2);
-    }
-
     /**
      * Test id S1
      */

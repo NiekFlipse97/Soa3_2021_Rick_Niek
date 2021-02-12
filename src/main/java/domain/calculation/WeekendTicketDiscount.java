@@ -7,21 +7,29 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class WeekendTicketDiscount implements IDiscount {
+
     @Override
     public double groupDiscount(List<MovieTicket> tickets, double totalPrice) {
         return 0;
     }
 
     @Override
-    public double weekendTicketDiscount(MovieTicket ticket, double totalPrice, int i) {
-        if (!isWeekend(ticket) && i % 2 == 0) {
-            // Door de week
-            // Hier 2e ticket gratis
-            return totalPrice;
+    public double weekendTicketDiscount(List<MovieTicket> tickets) {
+        double totalPrice = 0;
+
+        for (int i = 1; i <= tickets.size(); i++) {
+            MovieTicket ticket = tickets.get(i-1);
+            if (!isWeekend(ticket) && i % 2 == 0) {
+                // Door de week
+                // Hier 2e ticket gratis
+                totalPrice += 0;
+            } else {
+                // Dit is weekend ticket. Dus betalen G.
+                totalPrice += sumPrice(ticket);
+            }
         }
 
-        // Dit is weekend ticket. Dus betalen G.
-        return (totalPrice + sumPrice(ticket));
+        return totalPrice;
     }
 
     public boolean isWeekend(MovieTicket ticket) {

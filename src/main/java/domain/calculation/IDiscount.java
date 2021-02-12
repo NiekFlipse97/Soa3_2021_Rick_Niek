@@ -8,6 +8,6 @@ public interface IDiscount {
 
     double groupDiscount(List<MovieTicket> tickets, double totalPrice);
 
-    double weekendTicketDiscount(MovieTicket ticket, double totalPrice, int i);
+    double weekendTicketDiscount(List<MovieTicket> tickets);
 
 }

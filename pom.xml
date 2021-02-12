@@ -11,6 +11,9 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <sonar.projectKey>NiekFlipse97_Soa3_2021_Rick_Niek</sonar.projectKey>
+        <sonar.organization>voesnieksoa3cinema</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
 	<build>

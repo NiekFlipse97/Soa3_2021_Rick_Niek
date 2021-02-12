@@ -1,22 +1,22 @@
 package domain;
 
-import domain.calculation.Discounts;
+import domain.calculation.audience.ITargetAudience;
 import domain.fileExport.FileExportFactory;
 import domain.fileExport.TicketExportFormat;
 
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class Order {
     private int orderNr;
-    private boolean isStudentOrder;
+    private ITargetAudience audience;
 
     private ArrayList<MovieTicket> tickets;
 
-    public Order(int orderNr, boolean isStudentOrder) {
+    public Order(int orderNr, ITargetAudience audience) {
         this.orderNr = orderNr;
-        this.isStudentOrder = isStudentOrder;
+        this.audience = audience;
 
         tickets = new ArrayList<MovieTicket>();
     }
@@ -29,27 +29,18 @@ public class Order {
         tickets.add(ticket);
     }
 
-    public boolean isWeekend() {
-        LocalDateTime screeningDate = tickets.get(0).getMovieScreeningDate();
-        DayOfWeek day = screeningDate.getDayOfWeek();
-
-        return day == DayOfWeek.FRIDAY || day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY;
+    public double calculatePrice() {
+        return round(audience.calculatePrice(this));
     }
 
-    public double calculatePrice() {
-        Discounts discounts = new Discounts(tickets); // 1
+    private double round(double value) {
+        BigDecimal bigDecimal = BigDecimal.valueOf(value);
+        bigDecimal = bigDecimal.setScale(2, RoundingMode.HALF_UP);
+        return bigDecimal.doubleValue();
+    }
 
-        if (isStudentOrder) { // A
-            // 2th ticket free for students every day of week.
-            return discounts.studentTickets(); // 2
-        }
-
-        // Non students here.
-        if (isWeekend()) { // B
-            return discounts.ticketsNonStudentWeekend(); // 3
-        }
-
-        return discounts.ticketsNonStudent(); // 4
+    public ArrayList<MovieTicket> getTickets() {
+        return this.tickets;
     }
 
     public void export(TicketExportFormat exportFormat) {

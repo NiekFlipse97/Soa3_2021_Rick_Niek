@@ -19,6 +19,6 @@ jobs:
       - name: Clean Maven install
         run: mvn clean install
       - name: Analyse with SonarQube
-        run: mvn -B clean verify sonar:sonar
+        run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar
           -Dsonar.host.url=https://sonarqube.avans-informatica-breda.nl
           -Dsonar.login=5e5e42932816cc502ad84f00d682bdba48afa9a1

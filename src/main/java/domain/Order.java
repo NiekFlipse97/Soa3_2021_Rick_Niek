@@ -3,6 +3,7 @@ package domain;
 import domain.calculation.audience.ITargetAudience;
 import domain.fileExport.FileExportFactory;
 import domain.fileExport.TicketExportFormat;
+import domain.fileExportStrategy.IFileBehaviour;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -43,11 +44,11 @@ public class Order {
         return this.tickets;
     }
 
-    public void export(TicketExportFormat exportFormat) {
-        // Bases on the string respresentations of the tickets (toString), write
+    public void export(IFileBehaviour file) {
+        // Bases on the string representations of the tickets (toString), write
         // the ticket to a file with naming convention Order_<orderNr>.txt of
         // Order_<orderNr>.json
-        FileExportFactory fileExportFactory = new FileExportFactory();
-        fileExportFactory.getFileExporter(exportFormat).export(orderNr, tickets);
+
+        file.export(orderNr, tickets);
     }
 }

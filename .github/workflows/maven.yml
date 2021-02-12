@@ -17,6 +17,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
       - name: Analyse with SonarQube
-        run: mvn -B verify sonar:sonar
+        run: ./mvnw -B verify sonar:sonar
           -Dsonar.host.url=https://sonarqube.avans-informatica-breda.nl
           -Dsonar.login=5e5e42932816cc502ad84f00d682bdba48afa9a1
